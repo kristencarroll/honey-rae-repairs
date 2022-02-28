@@ -1,41 +1,45 @@
-//WHAT STATE DO I WANT THIS COMPONENT TO RENDER--employees
-//whatever this component returns will be the HTML that gets
-//generated in the browser, SO THIS COMPONENT SHOULD ONLY DISPLAY EMPLOYEES List
-import React, { useEffect, useState }from "react"
-
-//define and export a function that pulls state from api and renders the html
-//for the employee list
+import React, { useEffect, useState } from "react"
 
 export const EmployeeList = () => {
+    const [employees, changeEmployee] = useState([])
+    //chap.6-create a New state variable
+    const [totalEmployeeSpecialties, setSpecialty] = useState("")
 
-    //define state with useState Hook
-    const [employees, setEmployees] = useState([])
-
-    //use the useEffect HOOK to run the code when the State changes 
-    //remember it take two arguments an function and an array
     useEffect(
         () => {
-            //fetch data from api
             fetch("http://localhost:8088/employees")
-            //convert json encoded string into javascript
                 .then(res => res.json())
-            //invoke setEmployees to set the value of employees
                 .then((employeeArray) => {
-                    setEmployees(employeeArray)
+                    changeEmployee(employeeArray)
                 })
         },
-        
         []
     )
-    return (
-        <> 
+
+    useEffect(() => {
+        
+            //1. Use .map() to get the specialty of each employee
+            const employeeSpecialties = employees.map(employee => employee.specialty) 
            
-           {
+            //2. Then update a state variable to be a comma-separated string
+                //(e.g. "iPhone, Printers, ...")
+            setSpecialty(employeeSpecialties.join(", "))
+            
+    }, [employees])
+
+    //invoke {totalEmployeeSpecialties} interpolated behind the colon in the <div> tag
+
+    return (
+        <>
+            <div>
+                Specialties: {totalEmployeeSpecialties}
+            </div>
+            {
                 employees.map(
-                    (employeeObject) => {
-                        return <p key={`employee--${employeeObject.id}`}>{employeeObject.name}</p>
+                    (employee) => {
+                        return <p key={`employee--${employee.id}`}>{employee.name}</p>
                     }
-                ) 
+                )
             }
         </>
     )
