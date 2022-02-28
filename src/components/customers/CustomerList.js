@@ -16,6 +16,10 @@ export const CustomerList = () => {
         //first: [customers, ] catches initial value
         //second: [ , setCustomers] gives a function to set value of customers later on (just holds the function that modifies the State)
     const [customers, setCustomers] = useState([])
+                //now in chap.5...create a new STATE variable 
+                //since it will just be a message, its initial value is an empty string
+                //updateMessage is a function to change what that string is
+    const [totalCustomerMessage, updateMessage] = useState("")
 
     //next use another built-in function of react, another HOOK (because starts with "use")
     //sole purpose of useEffect is to run code when the STATE changes-it's an event listener
@@ -39,8 +43,27 @@ export const CustomerList = () => {
                 })
         },
         //second is always an array
+
+                //chap.5-in this useEffect this array is not watching any State,
+                //so this code runs once when the component is rendered and never again
         []
     )
+//define a new useEffect that will run every time customers changes
+    useEffect(
+        () => {
+            //if total customers is 1, message is..
+            if (customers.length === 1) {
+                updateMessage("You have 1 customer")
+            }
+            else {
+                updateMessage(`You have ${customers.length} customers`)
+            }
+        },
+        [customers]
+
+    //^^^function should run whenever customers changes
+)
+            //chap.5 display the message (totalCustomerMessage) above customers in a <div> element
 
                 /*Pulled state from the API, now have it in State variable
                  which lives inside of this component.  Ready to iterate and 
@@ -50,14 +73,15 @@ export const CustomerList = () => {
 
     //for any component inside React that you want to generate HTML in has to have
     //a return statement with parenthesis
+
+    //.slice method shows only the number of items you want shown from a json array
     return (
         <> 
-            <h2>Customer List</h2>
-           
+           <div>{totalCustomerMessage}</div>
            {
-                customers.map(
+                customers.slice(0, 5).map(
                     (customerObject) => {
-                        return <h3 key={`customer--${customerObject.id}`}>{customerObject.name}</h3>
+                        return <p key={`customer--${customerObject.id}`}>{customerObject.name}</p>
                     }
                 ) 
             }
