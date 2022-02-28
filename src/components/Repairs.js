@@ -6,6 +6,8 @@
 import React from "react"
 //import {CustomerList} and display under h1
 import { CustomerList } from "./customers/CustomerList";
+//import {EmployeeList} and display under h1
+import { EmployeeList } from "./employees/EmployeeList";
 
 
 //(in react components, the HTML we write is called JSX)
@@ -16,6 +18,7 @@ export const Repairs = () => {
         <> 
             <h1>Honey Rae's Repair Shop</h1>
             <CustomerList />
+            <EmployeeList />
     
         </>
     )
