@@ -10,7 +10,7 @@ import React, { useEffect, useState }from "react"
 
 //(in react components, the HTML we write is called JSX)
 export const CustomerList = () => {
-    //...declare and deconstruct and array and use this function called a HOOK--
+    //...declare and deconstruct an array and use this function called a HOOK--
     //this is how you define State in react 
     //useState takes ONE argument and returns an ARRAY...the INITIAL value is an empty array
         //first: [customers, ] catches initial value
@@ -52,10 +52,12 @@ export const CustomerList = () => {
     //a return statement with parenthesis
     return (
         <> 
+            <h2>Customer List</h2>
+           
            {
                 customers.map(
                     (customerObject) => {
-                        return <h2 key={`customer--${customerObject.id}`}>{customerObject.name}</h2>
+                        return <h3 key={`customer--${customerObject.id}`}>{customerObject.name}</h3>
                     }
                 ) 
             }
