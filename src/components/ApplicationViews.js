@@ -3,9 +3,10 @@
 //browser is
 import React from "react"
 import { Route } from "react-router-dom"
-import { CustomerList } from "./customers/CustomerList"
-import { EmployeeList } from "./employees/EmployeeList"
-import { TicketList } from "./serviceTickets/TicketList"
+import { CustomerList } from "./customers/CustomerList";
+import { EmployeeList } from "./employees/EmployeeList";
+import { TicketForm } from "./serviceTickets/TicketForm";
+import { TicketList } from "./serviceTickets/TicketList";
 
 //this works in tandem with our navbar... the routes are listening for 
 //th event when someone clicks on the link in navbar
@@ -17,8 +18,12 @@ export const ApplicationViews = () => {
                 <CustomerList />
             </Route>
 
-            <Route path="/tickets">
+            <Route exact path="/tickets">
                 <TicketList />
+            </Route>
+
+            <Route path="/tickets/create">
+                <TicketForm />
             </Route>
 
             <Route path="/employees">
