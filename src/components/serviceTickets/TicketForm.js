@@ -31,8 +31,8 @@ export const TicketForm = () => {
     const submitTicket = (event) => {
         event.preventDefault()        
         //useState variable to create an object to POST to the API
-        const newTicket ={
-        //first two objects we get from state
+        const newTicket = {
+        //first two properties we get from state
             description: ticket.description,
             emergency: ticket.emergency,
             //the customerId needs to be pulled from local storage
