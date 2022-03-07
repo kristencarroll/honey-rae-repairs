@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import "./Tickets.css"
+import { Link } from "react-router-dom";
 
 export const TicketList = () => {
     const [tickets, updateTickets] = useState([])
@@ -32,7 +33,7 @@ export const TicketList = () => {
                     (ticket) => {
                         return <div key={`ticket--${ticket.id}`}>
                             <p className={`ticket ${ticket.emergency ? `emergency`:""}`}>
-                                {ticket.emergency ? "🚑" : ""} {ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
+                                {ticket.emergency ? "🚑" : ""} <Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link> submitted by {ticket.customer.name} and worked on by {ticket.employee.name}
                             </p>
                             </div>
                     }
