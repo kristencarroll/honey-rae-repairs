@@ -8,6 +8,8 @@ import { EmployeeList } from "./employees/EmployeeList";
 import { TicketForm } from "./serviceTickets/TicketForm";
 import { TicketList } from "./serviceTickets/TicketList";
 import { EmployeeForm } from "./employees/EmployeeForm";
+import { Ticket } from "./serviceTickets/CreateTicket";
+import { Employee } from "./employees/CreateEmployee";
 
 //this works in tandem with our navbar... the routes are listening for 
 //th event when someone clicks on the link in navbar
@@ -23,12 +25,20 @@ export const ApplicationViews = () => {
                 <TicketList />
             </Route>
 
+            <Route exact path="/tickets/:ticketId(\d+)">
+                <Ticket />
+            </Route>
+
             <Route path="/tickets/create">
                 <TicketForm />
             </Route>
 
             <Route exact path="/employees">
                 <EmployeeList />
+            </Route>
+
+            <Route exact path="/employees/:employeeId(\d+)">
+                <Employee />
             </Route>
 
             <Route exact path="/employees/create">
