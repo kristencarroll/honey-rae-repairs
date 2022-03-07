@@ -38,7 +38,11 @@ export const TicketForm = () => {
             //the customerId needs to be pulled from local storage
             //and added to this new object
             customerId: parseInt(localStorage.getItem("honey_customer")),
-            employeeId: 1,
+            
+            //originally we hard-coded 1 to the employeeId, but that employee is not always
+            //going to be working on that ticket, so we need to change the employee that is 
+            //assigned to the ticket
+            employeeId: 1, //so we are going to create a dropdown IN the Ticket component itself...
             dateCompleted: ""
         }
          ///^^^this is the object that gets sent to the API, so now there needs
